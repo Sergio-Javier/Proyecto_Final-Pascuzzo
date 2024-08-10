@@ -52,11 +52,11 @@ access-db:
 	docker exec -it $(SERVICE_NAME) mysql -u$(MYSQL_USER) -p$(PASSWORD)
 access-db-p_anderson:
 	@echo "Access to db-client"
-	docker exec -it $(SERVICE_NAME) mysql -u p_anderson -p anderson123
+	docker exec -it $(SERVICE_NAME) mysql -u p_anderson -panderson123
 access-db-t_ariel:
 	@echo "Access to db-client"
-	docker exec -it $(SERVICE_NAME) mysql -u t_ariel -p annone123
-	
+	docker exec -it $(SERVICE_NAME) mysql -u t_ariel -pannone123
+
 backup-db:
 	@echo "Back up database by structure and data"
 	docker exec -it $(SERVICE_NAME) mysqldump --routines=true  -u root -p$(PASSWORD) $(DATABASE) > ./backup/$(DATABASE)-backup.sql
