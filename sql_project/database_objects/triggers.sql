@@ -10,7 +10,7 @@ CREATE TABLE
     ,   fecha           DATETIME
     ,   ID_USER         INT
     ,	NICK			VARCHAR(50)
-    ,	PASSWORD		VARCHAR(50)
+    ,	PASSWARD		VARCHAR(50)
     ,   usuario         VARCHAR(50)
     );
 
@@ -22,8 +22,8 @@ CREATE TRIGGER after_insert_trigger
 AFTER INSERT ON USUARIO
 FOR EACH ROW
 BEGIN
-    INSERT INTO LOG_CAMBIOS (tabla_afectada, accion, fecha, ID_USER, NICK, PASSWORD, usuario)
-    VALUES ('USUARIO', 'INSERT', NOW() , NEW.ID_USER, NEW.NICK, NEW.PASSWORD, USER());
+    INSERT INTO LOG_CAMBIOS (tabla_afectada, accion, fecha, ID_USER, NICK, PASSWARD, usuario)
+    VALUES ('USUARIO', 'INSERT', NOW() , NEW.ID_USER, NEW.NICK, NEW.PASSWARD, USER());
 END //
 
 DELIMITER ;
