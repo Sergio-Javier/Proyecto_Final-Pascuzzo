@@ -38,27 +38,48 @@ DELIMITER ;
 
 
 DELIMITER //
+
 -- CREAMOS NUESTRO SEGUNDO PROCEDIMIENTO
-CREATE PROCEDURE delete_user (d_id_user INT)
+CREATE PROCEDURE delete_user (IN d_id_user INT)
 BEGIN
--- DECLARAMOS LAS SIGUIENTES VARIABLES
-	DECLARE existe_id INT;
-	DECLARE id VARCHAR(100);
--- CORROBORAMOS SI EL ID EXISTE CON LA VARIABLE existe_id
+
+    -- DECLARAMOS LAS SIGUIENTES VARIABLES
+    DECLARE existe_id INT;
+    DECLARE level_id INT;
+    DECLARE id VARCHAR(100);
+
+    -- INICIAR TRANSACCIÓN Y DESACTIVAR AUTOCOMMIT
+    START TRANSACTION;
+
+    -- CORROBORAMOS SI EL ID EXISTE CON LA VARIABLE existe_id
     SET existe_id = (SELECT count(ID_USER) FROM USUARIO WHERE ID_USER = d_id_user);
--- SI EXISTE BORRARA EL ID
+
+    -- SI EXISTE, BORRAR EL ID
     IF existe_id > 0 THEN
-    DELETE FROM USUARIO WHERE ID_USER = d_id_user;
--- SI LO BORRA, ARROJA MSJ DE EXITO
-    SET id = CONCAT (d_id_user,'','_ID Borrado con Exito');
-    else
--- SINO BORRA, ARROJA MSJ DE ERROR
-    set id = 'Usuario no encontrado';
-    end if;
-    select id AS Estado_de_borrado;
+        
+        -- OBTENEMOS EL NIVEL DEL USUARIO
+        SET level_id = (SELECT nivel_user FROM USUARIO WHERE ID_USER = d_id_user);
+
+        -- BORRAR EL USUARIO
+        DELETE FROM USUARIO WHERE ID_USER = d_id_user;
+
+        -- SI EL NIVEL DEL USUARIO ES MAYOR A 10, HACER ROLLBACK
+        IF level_id > 10 THEN 
+            ROLLBACK;
+            SET id = 'Transacción revertida: Nivel de usuario mayor a 10';
+        ELSE
+            COMMIT;
+            SET id = CONCAT(d_id_user, ' - ID Borrado con Éxito');
+        END IF;
+
+    ELSE
+        -- SI NO SE ENCUENTRA EL USUARIO, ARROJAR MENSAJE DE ERROR
+        SET id = 'Usuario no encontrado';
+    END IF;
+
+    -- MOSTRAR EL ESTADO DEL BORRADO
+    SELECT id AS Estado_de_borrado;
+
 END //
 
 DELIMITER ;
-
-
-
