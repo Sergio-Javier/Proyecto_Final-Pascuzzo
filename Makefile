@@ -60,7 +60,10 @@ access-db-t_ariel:
 backup-db:
 	@echo "Back up database by structure and data"
 	docker exec -it $(SERVICE_NAME) mysqldump --routines=true  -u root -p$(PASSWORD) $(DATABASE) > ./backup/$(DATABASE)-backup.sql
-
+restore-db:
+	@echo "Restoring database from backup"
+	docker exec -i $(SERVICE_NAME) mysql -u root -p$(PASSWORD) $(DATABASE) < ./backup/$(DATABASE)-backup.sql
+	
 down:
 	@echo "Remove the Database"
 	docker exec -it $(SERVICE_NAME) mysql -u$(MYSQL_USER) -p$(PASSWORD) --host $(HOST) --port $(PORT) -e "DROP DATABASE IF EXISTS $(DATABASE);"
