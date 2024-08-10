@@ -96,7 +96,7 @@ BEGIN
     DECLARE max_id INT;
 
 -- LA CONTRASEÑA DEBE TENER MAS DE 8 CARACTERES
-    IF LENGTH(passwd) < 8 THEN
+    IF LENGTH (passwd) < 8 THEN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'El password debe tener al menos 8 caracteres';
     END IF;
