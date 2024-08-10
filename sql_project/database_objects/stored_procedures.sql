@@ -48,7 +48,7 @@ BEGIN
     DECLARE level_id INT;
     DECLARE id VARCHAR(100);
 
-    -- INICIAR TRANSACCIÓN Y DESACTIVAR AUTOCOMMIT
+    -- INICIAR TRANSACCION Y DESACTIVAR AUTOCOMMIT
     START TRANSACTION;
 
     -- CORROBORAMOS SI EL ID EXISTE CON LA VARIABLE existe_id
@@ -66,10 +66,10 @@ BEGIN
         -- SI EL NIVEL DEL USUARIO ES MAYOR A 10, HACER ROLLBACK
         IF level_id > 10 THEN 
             ROLLBACK;
-            SET id = 'Transacción revertida: Nivel de usuario mayor a 10';
+            SET id = 'Transaccion revertida: Nivel de usuario mayor a 10';
         ELSE
             COMMIT;
-            SET id = CONCAT(d_id_user, ' - ID Borrado con Éxito');
+            SET id = CONCAT(d_id_user, ' - ID Borrado con Exito');
         END IF;
 
     ELSE
