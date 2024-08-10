@@ -376,4 +376,27 @@ Nota: El parametro de entrada es un numero entero, y solo se puede modificar ese
 -- Anteriormente, se presento una vista vw_user_count_party, que trae aquellos usuarios que no tienen registro de partidas, con sus id respectivos, podemos usar estos id que nos da la view, e insertar uno por uno los id a eliminar. En caso de tener que incorporar estos registros borrados, los tenemos en nuestra tabla LOG_CAMBIOS
 call delete_user(30);
 ```
-Nota: el parametro a ingresar es un INT.
+Nota: el parametro a ingresar es un INT. Posee un start transaction, en caso de que el usuario a borrar no exista arroja error, si el usuario tiene un nivel menor a 10 arroja mensaje de error. Solo borra si el usuario existe y si es nivel mayor a 10.
+
+### Procedimiento: insert_new_user
+
+**Descripción: insertar manualmente un usuario** 
+
+**Parámetros:** *todos del tipo IN*
+
+* *name_:ingresar el nombre del usuario*
+* *usurname:ingresar el apellido del usuario*
+* *birthday:ingresar fecha de nacimiento (yyyy-mm-dd)*
+* *email:ingresar email del usuario*
+* *passwd:ingresar el password del usuario (minimo 8 caracteres)*
+* *nick_:ingresar el apodo del usuario*
+   
+**Retorno*:*Si falla genera un signal error que indicara que la operacion falló*
+
+**Ejemplo de uso:**
+
+```sql
+call insert_new_user('anderson', 'ocana', '1990-06-01', 'anderson@yahoo.com', 123456789,'andersoon');
+```
+Nota: posee un start transaction, por lotanto si se inserta, solo ahi se guardará los cambios.
+Como el usuario genera un ID autoincremental, no tendria que arrojar error, ya que genera un nuevo id, y lo compara con el ultimo creado, solo si son iguales no lo crea, en caso de error se debera ingresar elusuario a traves de un INSERT manual.
