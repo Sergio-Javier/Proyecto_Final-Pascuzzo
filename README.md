@@ -1,11 +1,11 @@
 # AUTOBATTLER-PASCUZZO
 
-<img src="https://www.figma.com/design/2hMAgSVh2BJzQbQEKZSB7I/Untitled?node-id=17-974&t=VEMQtXLtvM8iI9u8-1">
+<img src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/PedroPinhata/phptqEYTs.png">
 _________________________________________________________________________________________________________________________________
 
 ## Entrega segundo proyecto
 ### **PRESENTACIÓN**
-[CLICK AQUÍ](https://docs.google.com/presentation/d/16O-zsWoQdSBcbjZN8IAhYMevG8TtxkO-h4BGcAlowJE/edit?usp=sharing)
+[CLICK AQUÍ](https://www.figma.com/design/2hMAgSVh2BJzQbQEKZSB7I/Untitled?node-id=17-974&t=VEMQtXLtvM8iI9u8-1)
 ### Pascuzzo Sergio Javier
 ### Comisión 57190
 ### Tutor: Ariel Annone
