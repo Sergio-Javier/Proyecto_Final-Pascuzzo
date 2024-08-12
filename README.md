@@ -5,7 +5,7 @@ ________________________________________________________________________________
 
 ## Entrega segundo proyecto
 ### **PRESENTACIÓN**
-[CLICK AQUÍ](https://www.figma.com/design/2hMAgSVh2BJzQbQEKZSB7I/Untitled?node-id=17-974&t=VEMQtXLtvM8iI9u8-1)
+[CLICK AQUÍ](https://www.figma.com/proto/2hMAgSVh2BJzQbQEKZSB7I/Untitled?node-id=17-974&t=zDax4SGVBiFrOmXu-1&scaling=contain&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=17%3A974&share=1)
 ### Pascuzzo Sergio Javier
 ### Comisión 57190
 ### Tutor: Ariel Annone
