@@ -30,3 +30,14 @@ FROM
     LEFT JOIN REGISTRO_DE_PARTIDA AS r ON u.ID_USER = r.ID_USER
 GROUP BY
     u.ID_USER, u.NICK;
+
+-- tercer vista:
+-- ver que facturas tiene cada usuario y el monto total gastado.
+DROP VIEW IF EXISTS vw_compras_de_user;
+CREATE VIEW vw_compras_de_user AS
+SELECT
+`FACTURA`.`ID_USER`,
+GROUP_CONCAT (`FACTURA`.`ID_TRANSACCION`) AS FACTURAS,
+SUM (`FACTURA`.`TOTAL_PAGAR`) AS TOTAL_ABONADO
+FROM `FACTURA`
+GROUP BY `ID_USER`;
