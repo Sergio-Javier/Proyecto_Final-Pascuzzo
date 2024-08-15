@@ -41,3 +41,21 @@ GROUP_CONCAT (`FACTURA`.`ID_TRANSACCION`) AS FACTURAS,
 SUM (`FACTURA`.`TOTAL_PAGAR`) AS TOTAL_ABONADO
 FROM `FACTURA`
 GROUP BY `ID_USER`;
+
+
+-- cuarta vista:
+-- ver los modos de juegos usados por los user, segun el registro de partida.
+DROP VIEW IF EXISTS vw_modos_jugados;
+CREATE VIEW vw_modos_jugados AS
+SELECT
+r.ID_REG,
+r.FECHA_HORA,
+r.ID_USER,
+p.ID_SALA,
+p.ID_MODO,
+m.TIPO_MODO
+FROM PARTIDA AS p 
+	JOIN REGISTRO_DE_PARTIDA AS r 
+		ON r.ID_REG = p.ID_SALA
+	LEFT JOIN MODO_DE_JUEGO AS m 
+		ON m.TIPO_MODO = p.ID_MODO;
