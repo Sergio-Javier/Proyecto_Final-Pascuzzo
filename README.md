@@ -247,6 +247,56 @@ WHERE total_partidas = 0
 ORDER BY `ID_USER` ASC;
 ```
 
+
+#### Vista : vw_compras_de_user
+**Descripción: Se crea una vista para que nos muestre, los usuarios sus facturas registradas, y el monto total que gastaron en el juego.**
+
+**Columnas:**
+
+* *ID_USER*:*PERTENECIENTE A LA TABLA FACTURA. ES UN TIPO INT* 
+
+* *NRO_FACTURAS*:*PERTENECIENTE A LA TABLA FACTURAS, ES LA CONCATENACION DE LA COLUMNA ID_TRANSACCION, TRAE UN STRING SEPARADO POR COMAS CON LOS NUMEROS ID*
+
+* *TOTAL_ABONADO*:*PERTENECIENTE A LA TABLA FACTURA, ES LA SUMA DE LOS TOTALES DE SUS RESPECTIVAS TRANSACCIONES DE LA COLUMNA TOTAL_PAGAR* 
+
+**Ejemplo de consulta:**
+
+```sql
+SELECT * FROM vw_compras_de_user 
+WHERE ID_USER = 1;
+```
+
+
+#### Vista : vw_modos_jugados
+**Descripción: Se crea una vista que traiga los registros de partidas de cada usuario e indique que modos fueron jugados por los jugadores**
+
+**Columnas:**
+
+* *ID_REG*:*PERTENECIENTE A LA TABLA REGISTRO_DE_PARTIDA. ES UN TIPO INT* 
+
+* *FECHA_HORA*:*PERTENECIENTE A LA TABLA REGISTRO_DE_PARTIDA. ES UN TIPO DATETIME*
+
+* *ID_USER*:*PERTENECIENTE A LA TABLA REGISTRO_DE_PARTIDA. ES UN TIPO INT* 
+
+* *ID_SALA*:*PERTENECIENTE A LA TABLA PARTIDA. ES UN TIPO INT* 
+
+* *ID_MODO*:*PERTENECIENTE A LA TABLA PARTIDA. ES UN TIPO INT* 
+
+* *TIPO_MODO*:*PERTENECIENTE A LA TABLA MODO_DE_JUEGO. ES UN TIPO VARCHAR* 
+
+**Ejemplo de consulta:**
+
+```sql
+SELECT * FROM vw_modos_jugados 
+ORDER BY `ID_REG` ASC;
+```
+
+```sql
+SELECT * FROM vw_modos_jugados 
+WHERE `TIPO_MODO` = 'CLASIFICATORIA';
+```
+
+
 ## Documentación de Funciones 
 
 ### Función:
