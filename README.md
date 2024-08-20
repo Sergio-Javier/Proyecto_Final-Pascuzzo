@@ -297,6 +297,30 @@ WHERE `TIPO_MODO` = 'CLASIFICATORIA';
 ```
 
 
+#### Vista : vw_unidades_mas_usadas
+**Descripción: Se crea una vista que traiga las unidades mas usadas por los jugadores durante las partidas**
+
+
+
+**Columnas:**
+
+* *ID_REG*:*PERTENECIENTE A LA TABLA REGISTRO_DE_PARTIDA. ES UN TIPO INT* 
+
+* *FECHA_HORA*:*PERTENECIENTE A LA TABLA REGISTRO_DE_PARTIDA. ES UN TIPO DATETIME*
+
+**Ejemplo de consulta:**
+
+```sql
+select * from vw_unidades_mas_usadas 
+where id_unid = 1;
+```
+```sql
+select * from vw_unidades_mas_usadas 
+where CANT_DE_USOS < 50;
+```
+*Nota: Para esta vista se tuvo que crear una tabla, para poder contar la cantidad de id de las unidades que mas utilizan los jugadores. Emplee la ayuda de IA, pero se modifico para que funcionara de forma correcta. Ademas, esta tabla con los numeros de los id, puede ser modificada con un triggers, cada vez que se cree una unidad para el juego, el trigger haria un insert into en la tabla NUMBERS. Solo se creo la tabla para facilitar el conteo de las unidades mas compradas, almacenado en la tabla ESTADISTICAS.*
+
+
 ## Documentación de Funciones 
 
 ### Función:
