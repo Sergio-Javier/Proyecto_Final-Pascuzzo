@@ -61,3 +61,30 @@ FROM PARTIDA AS p
 		ON r.ID_REG = p.ID_SALA
 	LEFT JOIN MODO_DE_JUEGO AS m 
 		ON m.TIPO_MODO = p.ID_MODO;
+
+-- Quinta vista.
+-- Para esta viste se tuvo que crear una tabla, para poder contar la cantidad de id de las unidades que mas utilizan
+--los jugadores. Emplee la ayuda de IA, pero se modifico para que funcionara de forma correcta.
+-- Ademas, esta tabla con los numeros de los id, puede ser modificada con un triggers, cada vez que se
+-- cree una unidad para el juego, el trigger haria un insert into en la tabla NUMBERS.
+-- Solo se creo la tabla para facilitar el conteo de las unidades mas compradas,
+-- almacenado en la tabla ESTADISTICAS.
+
+DROP TABLE IF EXISTS NUMBERS;
+CREATE TABLE NUMBERS (id_unid INT);
+INSERT INTO NUMBERS (id_unid) VALUES
+(1), (2), (3), (4), (5), (6), (7), (8), (9), (10),
+(11), (12), (13), (14), (15), (16), (17), (18), (19), (20),
+(21), (22), (23), (24);
+
+DROP VIEW IF EXISTS vw_unidades_mas_usadas;
+CREATE VIEW vw_unidades_mas_usadas AS
+SELECT 
+	id_unid, COUNT(*) AS CANT_DE_USOS
+FROM 
+	(SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(e.UNIDADES_COMPRADAS, ',', n.id_unid), ',', -1) AS id_unid
+		FROM ESTADISTICAS AS e
+			JOIN NUMBERS AS n ON FIND_IN_SET(n.id_unid, e.UNIDADES_COMPRADAS)
+	) AS ext_nro
+GROUP BY id_unid
+ORDER BY CANT_DE_USOS DESC;
